@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const users = require("../models/User");
 const bcryptjs = require("bcryptjs");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
@@ -15,13 +15,13 @@ exports.userCreation = async (req, res) => {
 
     try {
         // Se verifica que el usuario registrado sea único
-        let user = await User.findOne({ email });
+        let user = await users.findOne({ email });
         if (user) {
             return res.status(400).json({ msg: "El usuario ya existe" });
         }
 
         // Se crea el nuevo usuario 
-        user = new User(req.body);
+        user = new users(req.body);
         // 
         user.password = await bcryptjs.hash(password, 8);
 
@@ -31,7 +31,7 @@ exports.userCreation = async (req, res) => {
 
         // Si las validaciones son exitosas, se firma el Token 
         const payload = {
-            user: { id: User.id },
+            user: { id: user._id },
         };
         jwt.sign(
 

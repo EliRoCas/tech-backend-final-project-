@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const users = require("../models/User");
 const bcryptjs = require("bcryptjs");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
@@ -15,7 +15,7 @@ exports.userAuthentication = async (req, res) => {
 
     try {
         // Se verifica la existencia de usuario registrado 
-        let user = await User.findOne({ email });
+        let user = await users.findOne({ email });
         if (!user) {
             return res.status(400).json({ msg: "El usuario no está registrado" });
         }
@@ -29,7 +29,7 @@ exports.userAuthentication = async (req, res) => {
 
         // Si las validaciones son exitosas, se firma el Token 
         const payload = {
-            user: { id: user.id },
+            user: { id: user._id },
         };
         jwt.sign(
 
@@ -53,7 +53,7 @@ exports.userAuthentication = async (req, res) => {
 
 exports.authenticatedUser = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id);
+        const user = await users.findById(req.user.id);
         res.json({ user });
 
     } catch (error) {
