@@ -16,7 +16,7 @@ exports.userCreation = async (req, res) => {
     try {
         // Se verifica que el usuario registrado sea único
         let user = await User.findOne({ email });
-        if (!user) {
+        if (user) {
             return res.status(400).json({ msg: "El usuario ya existe" });
         }
 

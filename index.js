@@ -6,6 +6,12 @@ const cors = require("cors");
 const app = express();
 
 
+// Se habilita el cors 
+app.use(cors());
+
+// Se habilita express json
+app.use(express.json({ extended: true }));
+
 // Se configuran las rutas del proyecto 
 app.use("/api/users", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
@@ -15,12 +21,6 @@ const port = process.env.PORT || 5000;
 
 // Se conecta a la DB 
 dbConnection();
-
-// Se habilita el cors 
-app.use(cors());
-
-// Se habilita express json
-app.use(express.json({ extended: true }));
 
 // app.get('*', (req, res) => {
 //     res.sendFile(`index.html`, { root: www });
