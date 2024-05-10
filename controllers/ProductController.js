@@ -18,7 +18,7 @@ exports.addProducts = async (req, res) => {
 exports.getProducts = async (req, res) => {
     try {
         let products = await Product.find();
-        res.json(products);
+        res.json({ products });
     } catch (error) {
         console.log(error);
         res.status(500).send("Hubo un error al mostrar los productos");
@@ -47,7 +47,7 @@ exports.updateProduct = async (req, res) => {
         if (!product) {
             return res.status(404).json({ msg: "No se encontró el producto con ese ID" });
         } else {
-            res.json(product);
+            res.json({ product });
         }
     } catch (error) {
         console.log(error);
