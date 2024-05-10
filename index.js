@@ -15,6 +15,8 @@ app.use(express.json({ extended: true }));
 // Se configuran las rutas del proyecto 
 app.use("/api/users", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/clients", require("./routes/RoutesClient"));
+app.use("/api/products", require("./routes/routesProducts"))
 
 // Se configura el puerto
 const port = process.env.PORT || 5000;
