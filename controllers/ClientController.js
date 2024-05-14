@@ -11,7 +11,7 @@ exports.addClients = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.status(500).send('Hubo un error al agregar un cliente');
+        res.status(500).send('Hubo un error al agregar el cliente');
     }
 }
 
@@ -70,7 +70,7 @@ exports.updateClients = async (req, res) => {
         res.json({client})
     } catch (error) {
         console.log(error);
-        res.status(500).send('Hubo un error al modifical al cliente');
+        res.status(500).send('Hubo un error al modificar al cliente');
 
     }
 }

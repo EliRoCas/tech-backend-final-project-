@@ -8,8 +8,8 @@ router.post('/', ClientController.addClients);
 router.get('/', ClientController.showClients);
 router.get('/:id', ClientController.showClient);
 router.delete('/:id', ClientController.deleteClients);
-router.patch('/:id', ClientController.updateClients);
-// router.put('/:id', ClientController.updateClient);
+// router.patch('/:id', ClientController.updateClients);
+router.put('/:id', ClientController.updateClients);
 // router.put('/:id', ClientController.upgradeClients);
 
 module.exports = router; 
